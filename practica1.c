@@ -102,25 +102,25 @@ int main(int argc, char** argv){
         received++;
     }while(received < size -1);
 
-    // Update the retraso matrix with the received data
+    // Actualizar la matriz de retraso con los valores recibidos
     for(int nodo=0; nodo < size; nodo++){
         if(nodo != rank){
             retraso[rank][nodo] = recv_data[nodo];
         }
     }
 
-    // Gather all retraso matrices from all processes
+    // Esperar a que se envien todos los nodos
     MPI_Allgather(MPI_IN_PLACE, size, MPI_INT, retraso, size, MPI_INT, MPI_COMM_WORLD);
 
-	// Imprime los retrasos
-	printf("Los retrasos son:\n");
-	for(int i=0; i<size; i++){
-		for(int j=0; j<size; j++){
-			printf("%d ", retraso[i][j]);
-		}
-		printf("\n");
-	}
-	
+	// // Imprime los retrasos
+	// printf("Los retrasos son:\n");
+	// for(int i=0; i<size; i++){
+	// 	for(int j=0; j<size; j++){
+	// 		printf("%d ", retraso[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+
     if(rank == 0){
         encontrarRutaCorta(size, retraso);
     }

@@ -15,7 +15,7 @@
 hasta cada nodo. Sin embargo, si también se reporta cual es la ruta. 
 
 
-## Pseudocodigo
+## Pseudocodigo para dijkstra 
 
 1. Inicializamos todas las distancias en $D$ con un valor infinito relativo (el nodo de inicio es 0)
 
@@ -36,9 +36,21 @@ $P[t] := s$
 
 6. Se regresa al paso 4. 
 
+## Recibir yu enviar mensajes 
+
+Muchas de las funciones que estan en `main` son para recirbir y enviar informacion a los nodos y fueron proporcionados en la ayudantia. 
+
+
 ## Para corer la práctica  
 
+Para compilar 
+
 ```
-gcc practica1.c
+mpicc practica1.c
+```
+
+Para correr el archivo
+```
+mpirun -np 4  --oversubscribe ./a.out
 ```
 
