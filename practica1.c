@@ -112,6 +112,15 @@ int main(int argc, char** argv){
     // Gather all retraso matrices from all processes
     MPI_Allgather(MPI_IN_PLACE, size, MPI_INT, retraso, size, MPI_INT, MPI_COMM_WORLD);
 
+	// Imprime los retrasos
+	printf("Los retrasos son:\n");
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			printf("%d ", retraso[i][j]);
+		}
+		printf("\n");
+	}
+	
     if(rank == 0){
         encontrarRutaCorta(size, retraso);
     }
