@@ -94,7 +94,7 @@ int main(int argc, char** argv){
 	}
 
 
-	// Esperar a que se recivan todos los nodos 
+	// Esperar a que se reciban todos los nodos 
 	int received = 0; 
 
 	do{
