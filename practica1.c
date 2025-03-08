@@ -85,8 +85,8 @@ int main(int argc, char** argv){
 		if(nodo!= rank){
 			int valor_aleatorio = (rand() % 1000) + 1; 
 			send_data[nodo] = valor_aleatorio; 
-			MPI_send(&send_data[nodo], 1, MPI_INIT,nodo, TAG_MESSAGE,MPI_COMM_WORLD,&send_request[nodo]);
-			MPI_recv(&recv_request[nodo], 1, MPI_INIT,nodo, TAG_MESSAGE,MPI_COMM_WORLD,&recv_request[nodo]);
+			MPI_Send(&send_data[nodo], 1, MPI_INI,nodo, TAG_MESSAGE,MPI_COMM_WORLD,&send_request[nodo]);
+			MPI_recv(&recv_request[nodo], 1, MPI_INI,nodo, TAG_MESSAGE,MPI_COMM_WORLD,&recv_request[nodo]);
 		}else{
 			send_request[nodo] = MPI_REQUEST_NULL;
 			recv_request[nodo] = MPI_REQUEST_NULL; 
@@ -100,7 +100,7 @@ int main(int argc, char** argv){
 	do{
 		int nodo; 
 		MPI_Waitany(size,recv_request, &nodo, MPI_STATUS_IGNORE); // received == size -1
-	}while(received < size -1)
+	}while(received < size -1);
 
 	MPI_Allgather(retraso[rank],size, MPI_INIT, retraso, size, MPI_INIT, MPI_COMM_WORLD); 
 
